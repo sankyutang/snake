@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=320, initial-scale=1, user-scalable=0">
+    <title>测试safari传感器</title>
+</head>
+<body>
+<script>
+    /*
+    function orientationChange() {
+
+        switch(window.orientation) {
+            case 0:
+                alert("肖像模式 0,screen-width: " + screen.width + "; screen-height:" + screen.height);
+                break;
+            case -90:
+                alert("左旋 -90,screen-width: " + screen.width + "; screen-height:" + screen.height);
+                break;
+            case 90:
+                alert("右旋 90,screen-width: " + screen.width + "; screen-height:" + screen.height);
+                break;
+            case 180:
+                alert("风景模式 180,screen-width: " + screen.width + "; screen-height:" + screen.height);
+                break;
+        };
+    }
+
+    // 添加事件监听
+    addEventListener('initDeviceOrientationEvent', function(){
+        orientationChange();
+        window.onorientationchange = orientationChange;
+    });
+    */
+    window.addEventListener("deviceorientation", function(event) {
+              // process event.alpha, event.beta and event.gamma
+        var o = document.getElementById("msg");
+        o.innerHTML = "";
+        o.innerHTML = o.innerHTML + "<p>Gamma:"+ event.gamma +"</p>";
+        o.innerHTML = o.innerHTML + "<p>beta:"+ event.beta +"</p>";
+        o.innerHTML = o.innerHTML + "<p>alpha:"+ event.alpha +"</p>";
+    }, true);
+
+/*
+    window.addEventListener("devicemotion",function(event){
+        var o = document.getElementsById("motion");
+        o.innerHTML = "";
+        o.innerHTML = o.innerHTML + "<p>x="+event.accelerationIncludingGravity.x+"</p>";
+    },true);
+*/
+
+    window.ondevicemotion = function(event) {
+    	html = "Acceleration: " + event.acceleration + "<br>";
+    	html += "Acc. including Gravity: <p>x:" + event.accelerationIncludingGravity.x + ",<p>y:" +
+    		event.accelerationIncludingGravity.y + ",<p>z:" + event.accelerationIncludingGravity.z + "<br>";
+    	html += "RotationRate: " + event.rotationRate + "<br>";
+    	html += "Interval: " + event.interval + "<br>";
+    	document.getElementById("motion").innerHTML = html;
+    }
+
+    /*
+    window.addEventListener("compassneedscalibration", function(event) {
+        var o = document.getElementById("msg");
+                o.innerHTML = o.innerHTML + "<p>"+ event.gamma +"</p>";
+              alert('Your compass needs calibrating! Wave your device in a figure-eight motion');
+              event.preventDefault();
+    }, true);
+    */
+</script>
+<div id="msg"></div>
+<div id="motion"></div>
+</body>
+</html>
