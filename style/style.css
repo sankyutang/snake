@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+#status em{
+    display: inline-block;
+    width: 200px;
+}
